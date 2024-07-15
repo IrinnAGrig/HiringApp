@@ -1,0 +1,110 @@
+npm install firebase
+ng add @angular/fire
+firebase login
+firebase init
+
+
+install plotly.js 
+1. npm install plotly.js
+2. npm install angular-plotly.js plotly.js
+3. "scripts": [
+  "node_modules/plotly.js/dist/plotly.min.js"
+]
+4. import * as Plotly from 'plotly.js';  /// in the component where want to use
+
+npm install ngx-quill quill
+
+
+import QuillType from 'quill';
+import Delta from 'quill-delta';
+
+
+import { QuillModule } from 'ngx-quill';
+
+@NgModule({
+  declarations: [YourComponent],
+  imports: [
+    QuillModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule
+  ],
+})
+export class YourModule { }
+
+
+<form [formGroup]="jobForm" (ngSubmit)="onSubmit()" *ngIf="isCreatingJob" class="form-create-job">
+    <h4>Add job</h4>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInput" formControlName="name" placeholder="1">
+        <label for="floatingInput">Name job</label>
+    </div>
+    <div class="form-floating">
+        <quill-editor [formControlName]="'description'" [style.height]="'200px'" [style.border]="'1px solid #ced4da'"></quill-editor>
+        <label for="description">Description</label>
+    </div>
+    <button class="btn btn-dark" type="submit">Submit</button>
+</form>
+
+
+import { FormGroup, FormBuilder } from '@angular/forms';
+
+export class YourComponent {
+    jobForm: FormGroup;
+
+    constructor(private formBuilder: FormBuilder) {
+        this.jobForm = this.formBuilder.group({
+            name: [''],
+            description: ['']
+        });
+    }
+
+    // Other methods for form manipulation
+}
+
+
+
+
+
+{
+  "name": "hiring-application",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^15.2.0",
+    "@angular/common": "^15.2.0",
+    "@angular/compiler": "^15.2.0",
+    "@angular/core": "^15.2.0",
+    "@angular/fire": "^7.6.1",
+    "@angular/forms": "^15.2.0",
+    "@angular/platform-browser": "^15.2.0",
+    "@angular/platform-browser-dynamic": "^15.2.0",
+    "@angular/router": "^15.2.0",
+    "bootstrap": "^5.3.3",
+    "firebase": "^10.12.2",
+    "ngx-quill": "^20.0.1",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.12.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^15.2.11",
+    "@angular/cli": "~15.2.11",
+    "@angular/compiler-cli": "^15.2.0",
+    "@types/jasmine": "~4.3.0",
+    "@types/quill": "^2.0.14",
+    "jasmine-core": "~4.5.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.0.0",
+    "typescript": "~4.9.4"
+  }
+}
