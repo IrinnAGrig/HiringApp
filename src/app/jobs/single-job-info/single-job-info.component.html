@@ -1,0 +1,100 @@
+<div style="text-align: start" *ngIf="!showApplyForm">
+    <button class="btn btn-outline-dark mt-4 mb-4" (click)="goBack()">Go back</button>
+</div>
+
+<div *ngIf="job && !showApplyForm && !showEditForm">
+    <h5 *ngIf="!isPublicRoute" [ngStyle]="{'color': job.status == 'Completed' ? 'black' : 'red'}">This job is [
+        {{job.status}} ] -
+        <button class="btn btn-outline-dark"
+            (click)="changeStatus(job.status == 'Completed' ? 'In search': 'Completed')">{{job.status == 'Completed' ?
+            'Put in search' :
+            'Complete'}}</button>
+    </h5>
+    <div class="row mt-4 mb-4">
+        <div class="col-lg-9">
+            <h4>{{job.name}}</h4>
+        </div>
+        <div class="col-lg-3 d-flex justify-content-between">
+            <button class="btn btn-dark" (click)="showApplyForm = true" *ngIf="isPublicRoute">Apply for this
+                job</button>
+            <button class="btn btn-dark" (click)="showEditForm = true" *ngIf="!isPublicRoute">Edit</button>
+            <button class="btn btn-dark" (click)="showEditForm = true" *ngIf="!isPublicRoute">Delete</button>
+        </div>
+    </div>
+    <div>
+        <h6><i>{{job.details}}</i></h6>
+    </div>
+
+    <div style="text-align: start" [innerHTML]=" job.description | safeHtml"
+        [ngStyle]="{ 'p': { 'margin-bottom': '0', 'background-color': 'black' } }">
+    </div>
+</div>
+
+<div *ngIf="showApplyForm && !showEditForm">
+    <form [formGroup]="applicationForm" (ngSubmit)="onSubmitApply()">
+        <div style="text-align: center;">
+            <h4> Apply for job</h4>
+        </div>
+        <div class="alert alert-success" role="alert" *ngIf="successSentApplication != null && successSentApplication">
+            <h4 class="alert-heading">Well done!</h4>
+            <p>The application has been sent!</p>
+        </div>
+        <div class="alert alert-success" role="alert" *ngIf="successSentApplication != null && !successSentApplication">
+            <h4 class="alert-heading">OPS...!</h4>
+            <p>something went wrong!</p>
+        </div>
+
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter your name">
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter your email">
+        </div>
+
+        <div class="mb-3">
+            <label for="phone" class="form-label">Phone</label>
+            <input type="tel" class="form-control" id="phone" formControlName="phone"
+                placeholder="Enter your phone number">
+        </div>
+
+        <div class="mb-3">
+            <label for="coverLetter" class="form-label">Cover Letter</label>
+            <textarea class="form-control" id="coverLetter" formControlName="coverLetter" rows="5"
+                placeholder="Write your cover letter here"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="resume" class="form-label">Resume</label>
+            <input type="file" class="form-control" id="resume" (change)="onFileChange($event)" accept=".pdf">
+        </div>
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-dark" (click)="hideForm()">Cancel</button>
+            <button type="submit" class="btn btn-primary" [disabled]="applicationForm.invalid">Submit</button>
+        </div>
+    </form>
+</div>
+
+<form [formGroup]="jobForm" (ngSubmit)="onSubmitEdit()" *ngIf="showEditForm" class="form-create-job">
+    <h4>Edit job</h4>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInput" formControlName="name" placeholder="1">
+        <label for="floatingInput">Name job</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInput" formControlName="details" placeholder="1">
+        <label for="floatingInput">Give details job</label>
+    </div>
+    <h6>Description job</h6>
+    <quill-editor class="content-editor" [placeholder]="''" [styles]="{'min-height': '120px'}"
+        formControlName="description"> </quill-editor>
+    <div class="row">
+        <div class="col text-end">
+            <button class="btn btn-outline-dark mt-3" style="margin-right: 30px;"
+                (click)="cancelEditJob()">Cancel</button>
+            <button class="btn btn-dark mt-3" type="submit" [disabled]="jobForm.invalid">Save</button>
+        </div>
+    </div>
+</form>

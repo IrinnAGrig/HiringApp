@@ -1,0 +1,39 @@
+<div style="text-align: start;">
+    <button class="btn btn-dark" (click)="goBack()">Go back</button>
+</div>
+
+<div *ngIf="selectedApplication != null">
+    <div *ngIf="selectedApplication.id != 'null'">
+        <h5>Status: {{selectedApplication.status}}
+            <span *ngIf="selectedApplication.status == 'Accepted' && !selectedApplication.isEmployee"> ->
+                <button class="btn btn-success" (click)="goToEmploeePage()">Create employee</button>
+            </span>
+
+        </h5>
+        <div class="d-flex justify-content-between">
+            <div class="text-start">
+                <h4> Applicant: {{selectedApplication.name}}</h4>
+                <h6>Email: {{selectedApplication.email}}</h6>
+                <h6>Phone: {{selectedApplication.phone}}</h6>
+                <h6>Cover letter: {{selectedApplication.coverLetter}}</h6>
+            </div>
+            <div *ngIf="!selectedApplication.isEmployee">
+                <button class="btn btn-outline-dark" (click)="showSetStatus = true" *ngIf="!showSetStatus">Set
+                    status</button>
+                <div class="input-group mb-3" *ngIf="showSetStatus">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-outline-dark" type="button" (click)="saveStatus()">Save</button>
+                    </div>
+                    <select class="custom-select" id="inputGroupSelect03" (change)="setStatus($event)">
+                        <option *ngFor="let status of typesApplic" [value]="status"
+                            [selected]="status == selectedApplication.status">{{status}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <app-pdf-viewer *ngIf="selectedApplication.id != 'null'" class="mt-4"
+        [base64File]="selectedApplication.resume"></app-pdf-viewer>
+    <app-not-found *ngIf="selectedApplication.id == 'null'"></app-not-found>
+</div>

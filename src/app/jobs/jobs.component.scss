@@ -1,0 +1,27 @@
+.forms {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Aggiunto */
+    flex-wrap: wrap;
+    /* Aggiunto */
+}
+
+.form-create-job {
+    margin: 40px 20px;
+}
+
+.jobs {
+    margin-top: 20px;
+
+    .job {
+        margin: 10px 0;
+        padding: 20px 10px 5px;
+        border: 1px solid gray;
+        border-radius: 30px;
+        cursor: pointer;
+        box-shadow: 8px 7px 30px -6px rgba(150, 150, 150, 0.75);
+        -webkit-box-shadow: 8px 7px 30px -6px rgba(150, 150, 150, 0.75);
+        -moz-box-shadow: 8px 7px 30px -6px rgba(150, 150, 150, 0.75);
+    }
+}

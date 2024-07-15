@@ -1,0 +1,38 @@
+<div class="forms" *ngIf="!isCreatingJob">
+    <div>
+        <form>
+            <select class="form-select" aria-label="Default select example" (change)="changeCategoryJobs($event)">
+                <option value="All">All</option>
+                <option value="Completed">Completed</option>
+                <option value="In search">In search</option>
+            </select>
+        </form>
+    </div>
+    <div>
+        <button class="btn btn-dark" (click)="isCreatingJob = true">Add job</button>
+    </div>
+</div>
+
+<app-list-jobs *ngIf="!isCreatingJob" [jobs]="jobs" (idJob)="goToIndividualJob($event)" ></app-list-jobs>
+
+<form [formGroup]="jobForm" (ngSubmit)="onSubmit()" *ngIf="isCreatingJob" class="form-create-job">
+    <h4>Add job</h4>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInput" formControlName="name" placeholder="1">
+        <label for="floatingInput">Name job</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInput" formControlName="details" placeholder="1">
+        <label for="floatingInput">Give details job</label>
+    </div>
+    <h6>Description job</h6>
+    <quill-editor class="content-editor" [placeholder]="''" [styles]="{'min-height': '120px'}"
+        formControlName="description"> </quill-editor>
+    <div class="row">
+        <div class="col text-end">
+            <button class="btn btn-outline-dark mt-3" style="margin-right: 30px;"
+                (click)="cancelAddingJob()">Cancel</button>
+            <button class="btn btn-dark mt-3" type="submit" [disabled]="jobForm.invalid">Submit</button>
+        </div>
+    </div>
+</form>
