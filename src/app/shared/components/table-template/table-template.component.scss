@@ -1,0 +1,64 @@
+table {
+    text-align: start;
+
+    span {
+        margin-top: 25%;
+        height: 10px;
+        width: 10px;
+        display: block;
+        background-color: green;
+        border-radius: 50%;
+    }
+
+    tbody tr {
+        cursor: pointer;
+    }
+
+    th {
+        position: relative;
+        cursor: pointer;
+
+    }
+
+    .head-table {
+        display: flex;
+
+    }
+
+    .spinner-table {
+        height: 50px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .spinner {
+        position: absolute;
+        text-align: center;
+    }
+
+    .sort-icon {
+        width: 10px;
+        display: block;
+        margin-top: 6px;
+        margin-left: 5px;
+
+
+        .hide {
+            display: none;
+
+        }
+
+        img:first-child {
+            margin-bottom: 1px;
+        }
+
+        img:last-child {
+            margin-top: 2px;
+            transform: rotate(180deg);
+            position: fixed;
+            margin-top: 8px;
+        }
+    }
+}

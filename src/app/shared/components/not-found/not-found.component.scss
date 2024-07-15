@@ -1,0 +1,22 @@
+#warning-error {
+    width: 500px;
+    margin: 100px auto;
+    border: 1px solid black;
+    text-align: center;
+    padding: 50px;
+    border-radius: 30px;
+    text-shadow: 2px 1px;
+    position: relative;
+
+    img {
+        padding: 10px;
+    }
+
+    h2 {
+        position: absolute;
+        z-index: 2;
+        font-size: 60px;
+        margin-left: 80px;
+    }
+
+}

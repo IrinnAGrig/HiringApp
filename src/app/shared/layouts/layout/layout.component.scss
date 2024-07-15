@@ -1,0 +1,98 @@
+$background-color_1: #0C0C0C;
+$text-color_1: white;
+
+#layout {
+    overflow: hidden;
+    position: relative;
+    display: flex;
+
+    .sidebar.active {
+        transform: translateX(-230px);
+    }
+
+    .sidebar {
+        width: 230px;
+        height: 100%;
+        padding: 5px;
+        text-align: center;
+        color: $text-color_1;
+        border-right: 1px solid $background-color_1;
+        background-color: $background-color_1;
+        position: fixed;
+        transition: transform 1.5s ease;
+
+        h4 {
+            margin: 20px auto;
+        }
+
+        .arrow-extension {
+            position: absolute;
+            z-index: 9;
+            right: -50px;
+            top: 0px;
+            padding: 10px;
+            background-color: $background-color_1;
+            border-right: 1px solid $background-color_1;
+            border-bottom: 1px solid $background-color_1;
+            cursor: pointer;
+
+            img {
+                filter: invert(100%);
+            }
+
+            img.to-extend {
+                transform: rotate(0);
+            }
+
+            img.no-extend {
+                transform: rotate(180deg);
+            }
+        }
+
+        li.active {
+            background-color: $text-color_1;
+            color: $background-color_1;
+            font-weight: bold;
+        }
+
+        li.nav-item {
+            position: relative;
+        }
+
+        li.nav-item span {
+            position: absolute;
+            top: 3px;
+            right: 50px;
+            width: 15px;
+            height: 15px;
+            font-size: 9px;
+            line-height: 15px;
+            color: white;
+            text-align: center;
+            border-radius: 50%;
+            background-color: red;
+        }
+
+        .logout-part {
+            position: absolute;
+            bottom: 30px;
+            width: 50px;
+            left: 40%;
+            cursor: pointer;
+        }
+    }
+
+    .page.active {
+        transform: translateX(-150px);
+    }
+
+    .page {
+        margin-left: 280px;
+        width: 130%;
+        position: relative;
+        text-align: center;
+        transition: transform 1.5s ease;
+        padding: 40px 50px;
+
+    }
+}

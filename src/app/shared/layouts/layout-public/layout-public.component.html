@@ -1,0 +1,7 @@
+<div class="button-login">
+    <button class="btn btn-dark home" (click)="goHome()" *ngIf="!isHome">Go back home</button>
+    <button class="btn btn-outline-dark signin" (click)="signin()" *ngIf="isHome">Sign in</button>
+</div>
+<div class="page">
+    <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,28 @@
+p {
+    margin-bottom: 4px;
+}
+
+.notifications {
+    width: 100%;
+
+    .notification {
+        margin-bottom: 20px;
+        width: 100%;
+        border: 1px solid lightgray;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .notification div:first-child {
+        text-align: start;
+    }
+
+    .notification div:last-child {
+        text-align: end;
+    }
+
+    button {
+        border-radius: 20px;
+        margin-top: 15px;
+    }
+}

@@ -1,0 +1,20 @@
+<h3>Notifications</h3>
+<div class="spinner-border mt-4" role="status" *ngIf="isLoading">
+    <span class="visually-hidden">Loading...</span>
+</div>
+<div class="notifications" *ngIf="notifications.length > 0 && !isLoading">
+    <div *ngFor="let notif of notifications" class="notification d-flex justify-content-between">
+        <div>
+            <h6>{{notif.name}}</h6>
+            <p>{{notif.email}}</p>
+            <p>{{notif.jobName}}</p>
+        </div>
+        <div class="align-items-end">
+            <p>{{notif.timeSended}}</p>
+            <button class="btn btn-outline-dark " (click)="goToDetails(notif.id)">See details!</button>
+        </div>
+    </div>
+</div>
+<div class="notifications" *ngIf="notifications.length == 0 && !isLoading">
+    <p> No RESULTS FOUND</p>
+</div>

@@ -1,0 +1,23 @@
+<form [formGroup]="formFilters">
+    <div class="d-flex align-items-center">
+        <label style="margin-right: 10px;">Select type raport:</label>
+        <select class="form-select" aria-label="Default select example" formControlName="typeApplic">
+            <option value="All">Select</option>
+            <option value="{{type}}" *ngFor="let type of types">{{type}}</option>
+        </select>
+    </div>
+</form>
+
+<div class="d-flex justify-content-between mt-3">
+    <div>
+        Uncompleted: {{jobInfo.uncompleted}}
+    </div>
+    <div>
+        Completed: {{jobInfo.completed}} / {{jobInfo.completed + jobInfo.uncompleted}}
+    </div>
+</div>
+<div class="progress m-4" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0"
+    aria-valuemax="100"><span>{{ jobInfo.completed * 100 / (jobInfo.completed + jobInfo.uncompleted) }}%</span>
+    <div class="progress-bar" [style.width]="calculateProgressBarWidth(jobInfo)">
+    </div>
+</div>

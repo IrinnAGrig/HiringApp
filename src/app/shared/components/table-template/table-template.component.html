@@ -1,0 +1,37 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col" *ngFor="let head of tableInfo" (click)="sortTable(head.bodyVarName)">
+                <div class="head-table">
+                    {{head.name}}
+                    <div class="d-flex flex-column sort-icon" *ngIf="head.hasSort">
+                        <img src="../../../../assets/images/sign-sort.png" height="6"
+                            [ngClass]="{'hide': sortedElement.direction === 'asc' && head.bodyVarName == sortedElement.element}">
+                        <img src="../../../../assets/images/sign-sort.png" height="6"
+                            [ngClass]="{'hide': sortedElement.direction === 'desc' && head.bodyVarName == sortedElement.element}">
+                    </div>
+                </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody *ngIf="!isLoading && !noDataFound">
+        <tr *ngFor="let singleData of pagedData" (click)="selectData(singleData.id)">
+            <td scope="row"><span *ngIf="singleData.seen && singleData.seen == 'No'"></span></td>
+            <td *ngFor="let body of tableInfo">{{singleData[body.bodyVarName]}}</td>
+        </tr>
+    </tbody>
+
+</table>
+<div class="spinner-table">
+    <div class="spinner-border mt-4" role="status" *ngIf="isLoading">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+
+<div *ngIf="!isLoading && noDataFound">
+    <p>No records found.</p>
+</div>
+
+<app-pagination *ngIf="data" [listLength]="data.length" [pageSize]="itemsPerPage"
+    (currentPage)="handlePageChange($event)"></app-pagination>
