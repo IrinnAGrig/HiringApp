@@ -1,0 +1,8 @@
+package-lock=false
+save-exact=true
+registry = https://nexus.cedacrigroup.it/repository/npm-cedacri/
+# registry = https://nexus.cedacrigroup.it/repository/npm-ion-mirror-npm-integration/
+# registry = http://pinexus01.iontrading.com/nexus/repository/npm-group/
+strict-ssl = false
+proxy=
+https-proxy=
